@@ -58,7 +58,8 @@ function notify() {
 [[ -d "$1" ]] && cd $1
 
 while true; do
-  for dir_name in *; do
+  for _name in `find $1 -name '.git'`; do
+    dir_name=$(dirname "$_name")
     if [[ -d "$dir_name" && $(cd "$dir_name"; git rev-parse --git-dir 2>/dev/null) ]]; then
 
       if [[ $(cd "$dir_name"; git config dude.ignore) == true ]]; then
