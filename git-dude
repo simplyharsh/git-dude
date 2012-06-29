@@ -47,12 +47,12 @@ function notify() {
     eval $notify_cmd
   fi
 
-  date "+%T %D"
-  echo "$TITLE"
+  log=`date "+%T %D"`
+  log="$log\n$TITLE"
   if [ -n "$DESCRIPTION" ]; then
-    echo "$DESCRIPTION"
+    log="$log\n$DESCRIPTION"
   fi
-  echo
+  echo -e "$log\n" >> ~/.dude-logs
 }
 
 [[ -d "$1" ]] && cd $1
